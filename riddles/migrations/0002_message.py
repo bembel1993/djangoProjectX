@@ -7,10 +7,10 @@ import django.utils.timezone
 
 
 class Migration(migrations.Migration):
-    initial = True
+    # initial = True
     dependencies = [
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
-       # ('riddles', '0001_initial'),
+        ('riddles', '0001_initial'),
     ]
 
     operations = [
@@ -20,8 +20,22 @@ class Migration(migrations.Migration):
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('message', models.TextField(verbose_name='Сообщение')),
                 ('pub_date', models.DateTimeField(default=django.utils.timezone.now, verbose_name='Дата сообщения')),
-                ('author', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL, verbose_name='Пользователь')),
-                ('chat', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='riddles.riddle', verbose_name='Чат под загадкой')),
+                ('author', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL,
+                                             verbose_name='Пользователь')),
+                ('chat', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='riddles.riddle',
+                                           verbose_name='Чат под загадкой')),
+            ],
+        ),
+        migrations.CreateModel(
+            name='Mark',
+            fields=[
+                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('mark', models.IntegerField(verbose_name='Оценка')),
+                ('pub_date', models.DateTimeField(default=django.utils.timezone.now, verbose_name='Дата оценки')),
+                ('author', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL,
+                                             verbose_name='Пользователь')),
+                ('person', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='persons.person',
+                                             verbose_name='Человек')),
             ],
         ),
     ]

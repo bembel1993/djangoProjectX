@@ -34,7 +34,6 @@ import json
 from django import forms
 from django.utils.translation import gettext, gettext_lazy as _
 
-
 app_url = "/riddles/"
 
 
@@ -351,6 +350,7 @@ class SubscribeView(FormView):
     def form_valid(self, form):
         form.save()
         return HttpResponseRedirect(self.success_url)
+
 
 # функция для удаления подписки (форма не нужна,
 # поэтому без классов, просто функция)

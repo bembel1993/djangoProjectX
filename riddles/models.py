@@ -16,8 +16,7 @@ class Option(models.Model):
 
 class Message(models.Model):
     chat = models.ForeignKey(
-        Riddle,
-        verbose_name='Чат под загадкой',
+        Riddle, verbose_name='Чат под загадкой',
         on_delete=models.CASCADE)
     author = models.ForeignKey(
         User,
@@ -28,10 +27,7 @@ class Message(models.Model):
         default=timezone.now)
 
 class Mark(models.Model):
-    riddle = models.ForeignKey(
-        Riddle,
-        verbose_name='Загадка',
-        on_delete=models.CASCADE)
+    riddle = models.ForeignKey(Riddle, verbose_name='Загадка', on_delete=models.CASCADE)
     author = models.ForeignKey(
         User,
         verbose_name='Пользователь', on_delete=models.CASCADE)
